@@ -317,6 +317,10 @@
 	status = "okay";
 };
 
+&gpu {
+	/delete-property/power-domains;
+};
+
 &hsusb {
 	status = "disabled";
 };
