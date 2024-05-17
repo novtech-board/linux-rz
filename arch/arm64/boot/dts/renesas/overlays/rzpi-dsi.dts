@@ -1,0 +1,24 @@
+/* SPDX-License-Identifier: GPL-2.0+ */
+/*
+ * Copyright (C) 2023 Renesas Electronics Corporation
+ */
+
+/dts-v1/;
+/plugin/;
+
+&dsi0 {
+	status = "okay";
+};
+
+// enable 5inch Waveshare panel (Raspberry Pi compatible)
+&mipi_panel {
+	status = "okay";
+};
+
+&rzsbc_mcu {
+        status = "okay";
+};
+
+&rzsbc_ft5406 {
+        status = "okay";
+};
