@@ -147,6 +147,12 @@
 		regulator-always-on;
 	};
 
+	hdmi_audio: graph_sound_card {
+		compatible = "audio-graph-card";
+		label = "hdmi-sound-card";
+		dais = <&i2s2_port0>;
+	};
+
 	hdmi-out {
 		compatible = "hdmi-connector";
 		type = "a";
@@ -652,6 +658,8 @@
 		reg = <0x39>;
 		status = "okay";
 
+		clock-names = "mclk";
+
 		ports {
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -669,6 +677,14 @@
 
 				sii9022_out: endpoint {
 					remote-endpoint = <&hdmi_con_out>;
+				};
+			};
+
+			port@3 {
+				reg = <3>;
+
+				codec_endpoint: endpoint {
+					remote-endpoint = <&i2s2_cpu_endpoint>;
 				};
 			};
 		};
@@ -840,6 +856,23 @@
 	pinctrl-names = "default";
 
 	status = "okay";
+};
+
+&ssi2 {
+	pinctrl-0 = <&ssi2_pins>;
+	pinctrl-names = "default";
+
+	status = "okay";
+
+	ports {
+		i2s2_port0: port@0 {
+			i2s2_cpu_endpoint: endpoint {
+				remote-endpoint = <&codec_endpoint>;
+				dai-format = "i2s";
+				mclk-fs = <256>;
+			};
+		};
+	};
 };
 
 &gpt5 {
