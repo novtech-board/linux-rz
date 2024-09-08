@@ -62,5 +62,8 @@ struct rzsbc_ft5406_data {
 	int retry_count;
 };
 
+extern void rzsbc_ft5406_start_polling(void);
+extern int rzsbc_mcu_is_connected(void);
+
 #endif
 
